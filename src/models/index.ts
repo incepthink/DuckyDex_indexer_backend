@@ -1,16 +1,16 @@
-import dbConfig from "../config/db-config";
+import dbConfig from "../config/config.json";
 import { DataTypes, Sequelize } from "sequelize";
 import Pool from "./pool";
 import Asset from "./asset";
 
 const sequelize = new Sequelize(
-  dbConfig.DATABASE,
-  dbConfig.USER,
-  dbConfig.PASSORD,
+  dbConfig.development.database,
+  dbConfig.development.username,
+  dbConfig.development.username,
   {
-    host: dbConfig.HOST,
+    host: dbConfig.development.host,
     //@ts-ignore
-    dialect: dbConfig.DIALECT,
+    dialect: dbConfig.development.dialect,
   }
 );
 

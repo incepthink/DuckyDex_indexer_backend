@@ -1,0 +1,11 @@
+{
+  "development": {
+    "username": "root",
+    "password": "Shoaib2580",
+    "database": "indexer",
+    "host": "localhost",
+    "port": 3306,
+    "dialect": "mysql",
+    "logging": false
+  }
+}
