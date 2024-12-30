@@ -6,22 +6,22 @@ import { AssetType } from "../../types/modelTypes";
 export const addAsset = async (asset: AssetType, next: NextFunction) => {
   try {
     const toAdd = {
-      asset_id: asset.assetId,
+      asset_id: asset.asset_id,
       name: asset.name,
       symbol: asset.symbol,
       decimals: asset.decimals,
       icon: asset.icon,
-      l1_address: asset.l1Address,
-      contract_id: asset.contractId,
+      l1_address: asset.l1_address,
+      contract_id: asset.contract_id,
       subId: asset.subId,
-      price: asset.price,
-      is_verified: asset.isVerified,
+      price_usd: asset.price,
+      is_verified: asset.is_verified,
     };
 
     //@ts-ignore
     const [newAsset, created] = await Asset.findOrCreate({
       where: {
-        asset_id: asset.assetId,
+        asset_id: asset.asset_id,
       },
       defaults: toAdd,
     });
@@ -31,11 +31,11 @@ export const addAsset = async (asset: AssetType, next: NextFunction) => {
       newAsset.symbol = asset.symbol;
       newAsset.decimals = asset.decimals;
       newAsset.icon = asset.icon;
-      newAsset.l1_address = asset.l1Address;
-      newAsset.contract_id = asset.contractId;
+      newAsset.l1_address = asset.l1_address;
+      newAsset.contract_id = asset.contract_id;
       newAsset.subId = asset.subId;
-      newAsset.price = asset.price;
-      newAsset.is_verified = asset.isVerified;
+      newAsset.price_usd = asset.price;
+      newAsset.is_verified = asset.is_verified;
     }
 
     newAsset.save();

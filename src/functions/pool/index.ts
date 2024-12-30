@@ -18,6 +18,7 @@ export const addPool = async (pool: PoolType, next: NextFunction) => {
       decimals_0: pool.decimals_0,
       decimals_1: pool.decimals_1,
       tvl: pool.tvl,
+      tvlUSD: pool.tvlUSD,
     };
 
     const [newPool, created] = await Pool.findOrCreate({
@@ -32,6 +33,7 @@ export const addPool = async (pool: PoolType, next: NextFunction) => {
       newPool.reserve_0 = pool.reserve_0;
       newPool.reserve_1 = pool.reserve_1;
       newPool.tvl = pool.tvl;
+      newPool.tvlUSD;
     }
 
     newPool.save();
@@ -41,12 +43,12 @@ export const addPool = async (pool: PoolType, next: NextFunction) => {
         {
           model: Asset,
           as: "Asset0",
-          attributes: ["asset_id", "name", "symbol", "icon", "price"],
+          attributes: ["asset_id", "name", "symbol", "icon", "price_usd"],
         },
         {
           model: Asset,
           as: "Asset1",
-          attributes: ["asset_id", "name", "symbol", "icon", "price"],
+          attributes: ["asset_id", "name", "symbol", "icon", "price_usd"],
         },
       ],
     });
@@ -64,7 +66,6 @@ export const addPool = async (pool: PoolType, next: NextFunction) => {
 
 export const getSnapShots = async (pool: PoolType, next: NextFunction) => {
   const timestamp24hAgo = Math.floor(Date.now() / 1000) - 24 * 60 * 60;
-  console.log(pool.id);
 
   try {
     const pools_query = gql`

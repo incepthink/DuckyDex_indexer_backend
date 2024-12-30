@@ -28,7 +28,7 @@ Asset.init(
     l1_address: DataTypes.STRING,
     contract_id: DataTypes.STRING,
     subId: DataTypes.STRING,
-    price: DataTypes.STRING,
+    price_usd: DataTypes.FLOAT,
     is_verified: DataTypes.BOOLEAN,
   },
   {
@@ -54,6 +54,7 @@ Pool.init(
     decimals_0: DataTypes.INTEGER,
     decimals_1: DataTypes.INTEGER,
     tvl: DataTypes.BIGINT,
+    tvlUSD: DataTypes.FLOAT,
   },
   {
     sequelize,

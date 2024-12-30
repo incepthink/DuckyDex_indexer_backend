@@ -7,7 +7,7 @@ import { addAsset } from "../functions/asset";
 
 type AssetResponse = {
   id: string;
-  price: string;
+  price_usd: number;
 };
 
 const getAssets = async (
@@ -20,7 +20,7 @@ const getAssets = async (
       query MyQuery {
         Asset(limit: 100) {
           id
-          price
+          price_usd
         }
       }
     `;
@@ -32,7 +32,7 @@ const getAssets = async (
     assetsPrice.forEach(async (asset: AssetResponse) => {
       const toAdd = {
         asset_id: asset.id,
-        price: asset.price,
+        price_usd: asset.price_usd,
       };
 
       const [assetDB, created] = await Asset.findOrCreate({
@@ -42,10 +42,8 @@ const getAssets = async (
         defaults: toAdd,
       });
 
-      console.log(assetDB);
-
       if (!created) {
-        assetDB.price = asset.price;
+        assetDB.price_usd = asset.price_usd;
       }
 
       assetDB.save();

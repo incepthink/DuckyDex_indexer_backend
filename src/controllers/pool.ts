@@ -13,7 +13,7 @@ const getPools = async (
   try {
     const pools_query = gql`
       query MyQuery {
-        Pool(limit: 100) {
+        Pool(limit: 100, order_by: { tvlUSD: desc }) {
           asset_0
           asset_1
           id
@@ -24,13 +24,13 @@ const getPools = async (
           reserve_1
           is_stable
           tvl
+          tvlUSD
         }
       }
     `;
 
     //@ts-ignore
     const result = await client.query(pools_query);
-    console.log(result);
 
     const pools = result.data.Pool;
 

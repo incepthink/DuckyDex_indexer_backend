@@ -9,17 +9,18 @@ export type PoolType = {
   reserve_1: string;
   is_stable: boolean;
   tvl: bigint;
+  tvlUSD: number;
 };
 
 export type AssetType = {
-  assetId: string;
+  asset_id: string;
   name: string;
   symbol: string;
   decimals: number;
   icon: string;
-  l1Address: string;
-  contractId: string;
+  l1_address: string;
+  contract_id: string;
   subId: string;
-  price: string;
-  isVerified: boolean;
+  price: number;
+  is_verified: boolean;
 };
